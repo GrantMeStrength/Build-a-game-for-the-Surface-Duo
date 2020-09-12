@@ -35,7 +35,7 @@ Let's create a new project, ready to be your game.
 
 ## Add the code libraries you will need
 
-The secret to writing games is to pick a library to do all the hard work for you. We're going to use SkiaSharp for this project, which is distributed in form of a few NuGet libraries.
+The secret to writing games is to pick a library to do all the hard work for you. We're going to use [SkiaSharp](https://github.com/mono/SkiaSharp) for this project, which is distributed in form of a few NuGet libraries.
 
 1. In the Solution Explorer view, find the primary project - **DuoGame** - which is immediately under  **Solution 'DuoGame'**, then right-click it and select **Manage NuGet Packages...**.
 
@@ -159,6 +159,26 @@ Don't be too sad, you can still use the built-in emulator. To launch the Surface
 That's it. You should now see it as a deploy target in Visual Studio.
 
 
-## Next steps
+## Review
 
-Now you can add code for loading bitmaps, drawing them and responding to screen taps. We will cover that in the next document. For now, you if just want to download the project at this stage, you'll find it in Files called "DuoGame.zip". Download it, expand it, and load it into Visual Studio.
+We've created a new Visual Studio project, and installed the NuGet packages required to use the SkiaSharp game library. At this point, all the code will do is create a blank display, however if just want to download the project at this stage as the basis for your own projects, you'll find it in Files called "DuoGame.zip". Download it, expand it, and load it into Visual Studio. Keep reading if you want to start drawing some graphics.
+
+There are three things we need to worry about: adding the bitmap to the project, loading it into the program at run-time, and finally displaying it. Let's get started.
+
+## Drawing to the SkiaSharp Canvas - Adding the bitmap
+
+Now we've the framework in place, it's time to load some images and draw them on the screen. 
+
+1. Create a new folder under the **DuoGame** project called **Images**. When it comes to loading images, the case used to name files and folders is important.
+
+2. Find your favorite image in PNG format, and drag it into the Images folder.
+
+3. In the image file's properties, set **Build Action** to **Embedded resouce**. It should look like this:
+
+![Adding an image requires setting the Build Action](resource.png)
+
+## Drawing to the SkiaSharp Canvas - Loading the bitmap
+
+## Drawing to the SkiaSharp Canvas - Drawing the bitmap
+
+
