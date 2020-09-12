@@ -179,6 +179,76 @@ Now we've the framework in place, it's time to load some images and draw them on
 
 ## Drawing to the SkiaSharp Canvas - Loading the bitmap
 
+As I suspect you'll want to use more than one bitmap in your game, let's write a method that will load a bitmap.
+
+Add this method to **Mainpage.xaml.cs**:
+
+```csharp
+   public SKBitmap LoadBitmap(string resourceID)
+        {
+            Assembly assembly = GetType().GetTypeInfo().Assembly;
+            using (Stream stream = assembly.GetManifestResourceStream(resourceID))
+            {
+                if (stream != null)
+                {
+                    return SKBitmap.Decode(stream);
+                }
+                return null;
+            }
+
+        }
+```
+
+Once you add this code you'll see some red-squigglies until various keywords, so use the "Fix it" option to add the right **using** statements to the top of the file.
+
+Create a variable to store the loaded bitmap by adding this line immediately before **public MainPage()** towards the top of the file.
+
+```csharp
+SKBitmap ninjaCatBitmap;
+```
+Now add the method that is called just as the view appears, as this is handy place to load the bitmap:
+
+```csharp
+   protected override void OnAppearing()
+   {
+        base.OnAppearing();
+        ninjaCatBitmap = LoadBitmap("DuoGame.Images.ninjacat.png");
+   }
+```
+You might want to build and run this now, because if you have gotten anything wrong, it will fail. Things to check: did you get the casing of the Images folder and file name right? Notice how periods are being used where you might expect slashes. Did you remember to make the image an Embedded Resource?
+
 ## Drawing to the SkiaSharp Canvas - Drawing the bitmap
 
+Now we're reading to draw the bitmap.
+
+Replace the existing OnCanvasViewPaintSurface method with this code:
+
+```charp
+      void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
+        {
+            SKSurface surface = args.Surface;
+            SKCanvas canvas = surface.Canvas;
+
+            // Clear the screen
+            canvas.Clear();
+
+            // Draw the bitmap
+            canvas.DrawBitmap(ninjaCatBitmap, 200, 200);
+        }
+```
+
+We've already created the canvas object in the XAML in **MainPage.xaml**, so this method gets a handle to it and then draws our bitmap.
+
+![Yes, it's a little small](bitmap.png)
+
+Here you can see the bitmap has been drawn. The Surface Duo screen is really sharp with a lot of pixels, and so the bitmap looks tiny!
+
+## Review
+
+So far we've create the most boring game in the world, entitled "Look at a tiny image". However, it has done several important things:
+
+1. Loaded a bitmap from a resource
+2. Drawn a bitmap
+
+And of course, since this is a Surface Duo, you can drag the app to the center of the screen and it will expand to fill the entire view. You can download the project from this point from the files area, and it's called "DuoGameBitmap.zip".
 
