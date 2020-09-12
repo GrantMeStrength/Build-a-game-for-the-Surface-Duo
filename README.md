@@ -10,7 +10,7 @@ This document will walk you through creating a Visual Studio project that's read
 
 
 
-## Install all the tools
+## Stage 1 - Install all the tools
 
 In order to create an Xamarin app for the Surface Duo, you will need to install:
 
@@ -165,9 +165,13 @@ We've created a new Visual Studio project, and installed the NuGet packages requ
 
 There are three things we need to worry about: adding the bitmap to the project, loading it into the program at run-time, and finally displaying it. Let's get started.
 
+## Stage 2 - Graphics
+
+Now we've the framework in place, it's time to load some images and draw them on the screen. Because a game without graphics.. well, it's a text adventure. And there's a time and a place for Zork, but it's not right now.
+
 ## Drawing to the SkiaSharp Canvas - Adding the bitmap
 
-Now we've the framework in place, it's time to load some images and draw them on the screen. 
+First let's get an image into the solution.
 
 1. Create a new folder under the **DuoGame** project called **Images**. When it comes to loading images, the case used to name files and folders is important.
 
@@ -199,7 +203,7 @@ Add this method to **Mainpage.xaml.cs**:
         }
 ```
 
-Once you add this code you'll see some red-squigglies until various keywords, so use the "Fix it" option to add the right **using** statements to the top of the file.
+Once you add this code you'll see some red-squigglies until various keywords, so use the "Show potential fixes" option to add the right **using** statements to the top of the file. Remember you can always download the zipped project files if you get lost.
 
 Create a variable to store the loaded bitmap by adding this line immediately before **public MainPage()** towards the top of the file.
 
@@ -245,10 +249,141 @@ Here you can see the bitmap has been drawn. The Surface Duo screen is really sha
 
 ## Review
 
-So far we've create the most boring game in the world, entitled "Look at a tiny image". However, it has done several important things:
+So far we've created the most boring game in the world, entitled "Look at a tiny image". However, it has done several important things:
 
 1. Loaded a bitmap from a resource
 2. Drawn a bitmap
 
 And of course, since this is a Surface Duo, you can drag the app to the center of the screen and it will expand to fill the entire view. You can download the project from this point from the files area, and it's called "DuoGameBitmap.zip".
+
+## Stage 3 - Animation
+
+It's time to move it, move it!
+
+The simplest way to animation your bitmaps is to keep redrawing them in new locations as quickly as possible. It ain't much, but it's honest work.
+
+The following code should replace **MainPage.xaml.cs** completely. It does several new things:
+
+1. Defines variables to store where the bitmap should be drawn, and the direction it should move.
+2. Creates a Stopwatch object. This is a way of pausing the program for 1/30th of a second (or even 1/60th).
+3. Defines a new method called AnimationLoop. This method updates the bitmap co-ordinates, triggers a redraw of the screen, and then uses the Stopwatch to pause for a fraction of a second - and then repeats ad nauseum.
+
+That's enough to make our bitmap bounce around the screen, as smooth as a buttery bitmap can be.
+
+```csharp
+using SkiaSharp;
+using SkiaSharp.Views.Forms;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace DuoGame
+{
+    public partial class MainPage : ContentPage
+    {
+        Stopwatch stopwatch = new Stopwatch();
+        float x = 200, y = 200;
+        float dx = 11, dy = 7;
+        bool pageIsActive = true;
+        SKBitmap ninjaCatBitmap;
+
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            // This method is automatically called when the app appears
+
+            base.OnAppearing();
+
+            // Load the bitmaps
+            ninjaCatBitmap = LoadBitmap("DuoGame.Images.ninjacat.png");
+
+            // Start the animation loop
+            AnimationLoop();
+        }
+
+        void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
+        {
+            // This is called whenever the screen needs redrawn
+
+            SKSurface surface = args.Surface;
+            SKCanvas canvas = surface.Canvas;
+
+            // Clear the screen
+            canvas.Clear();
+
+            // Draw the bitmap
+            canvas.DrawBitmap(ninjaCatBitmap, x, y);
+        }
+
+        async Task AnimationLoop()
+        {
+            // This just keeps going until the app isn't
+            // visible any more.
+
+            while (pageIsActive)
+            {
+                stopwatch.Start();
+
+                x = x + dx;
+                if (x < 0 || x > 1024) dx = -dx;
+               
+                y = y + dy;
+                if (y < 0 || y > 1024) dy = -dy;
+
+                canvasView.InvalidateSurface();
+                await Task.Delay(TimeSpan.FromSeconds(1.0 / 30.0));
+
+                stopwatch.Stop();
+            }
+        }
+
+        private void OnTouch(object sender, SKTouchEventArgs e)
+        {
+           
+        }
+
+        protected override void OnDisappearing()
+        {
+            // This is called when the app is no longer visible
+
+            base.OnDisappearing();
+            pageIsActive = false;
+        }
+
+        public SKBitmap LoadBitmap(string resourceID)
+        {
+            // Load the bitmap given its name
+
+            Assembly assembly = GetType().GetTypeInfo().Assembly;
+            using (Stream stream = assembly.GetManifestResourceStream(resourceID))
+            {
+                if (stream != null)
+                {
+                    return SKBitmap.Decode(stream);
+                }
+                return null;
+            }
+
+        }
+    }
+}
+ ```
+## Review
+
+We've now added the ability to move bitmaps around the screen! If you don't like the murky grey default background, you can create a larger bitmap for the background and then draw that instead of calling the **canvas.Clear()** method. It doesn't seen to have much of a speed penalty. You can download this final project as **DuoGameAnimated.zip**.
+
+What's next? Well, you'll need to add some form of input and of course sound effects would be nice. And what about using that hinge on the Duo to do something? And working with the expanded screen? Well, if you can't work all that out for yourself, I'm sure I can add a second installment Building a Game for the Surface Duo!
+
+-john
 
