@@ -4,6 +4,8 @@ If the release of the Microsoft Surface Duo has tempted you to take a look at An
 
 Well, not necessarily. [Xamarin](https://xamarin.github.io) is Microsoft's .NET cross-platform development platform, and it's a great way to write apps for the Surface Duo (and other mobile devices) using tools you probably already know: Visual Studio, C#, and XAML.
 
+![Everyone loves a good Ninja Cat game](game.png)
+
 Being old-school, I judge how useful a device and platform is by how easy it is to write a game. The good news is that with a few extra libraries, Xamarin is a great choice for writing casual games and I've already got some prototypes running on my Duo.
 
 This document will walk you through creating a Visual Studio project that's ready to start using as the basis of your first Duo game. Or you can simply download the Visual Studio projects and get a head start.
