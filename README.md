@@ -4,7 +4,7 @@ If the release of the Microsoft Surface Duo has tempted you to take a look at An
 
 Well, not necessarily. [Xamarin](https://xamarin.github.io) is Microsoft's .NET cross-platform development platform, and it's a great way to write apps for the Surface Duo (and other mobile devices) using tools you probably already know: Visual Studio, C#, and XAML.
 
-![Everyone loves a good Ninja Cat game](game.png)
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/game.png" alt="Everyone loves a good Ninja Cat game" width="200"/>
 
 Being old-school, I judge how useful a device and platform is by how easy it is to write a game. The good news is that with a few extra libraries, Xamarin is a great choice for writing casual games and I've already got some prototypes running on my Duo.
 
@@ -25,13 +25,16 @@ Let's create a new project, ready to be the basis of your first Xamarin game.
 
 1. Launch Visual Studio, click on **Create a new project** and select the **Mobile App (Xamarin.Forms)** project type.
 
-![The Mobile App (Xamarin.Forms) is the project type to use.](pic01.png)
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/pic-01.png" alt="The Mobile App (Xamarin.Forms) is the project type to use." width="400"/>
+
+
 
 2. Click **Next**, name the project **DuoGame** and click **Create**.
 3. You now need to select a template for the app. Pick **Blank**, and enable Android and disable the iOS and Windows options (unless you want to go truly cross-platform, of course). 
 4. Click **Create**.
 
-![Select the Blank template](template.png)
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/template.png" alt="Select the Blank template." width="400"/>
+
 
 ## Add the code libraries you will need
 
@@ -39,7 +42,8 @@ The secret to writing games is to pick a library to do all the hard work for you
 
 1. In the Solution Explorer view, find the primary project - **DuoGame** - which is immediately under  **Solution 'DuoGame'**, then right-click it and select **Manage NuGet Packages...**.
 
-![Remember to tap Browse when looking for NuGet packages](nuget.png)
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/nuget.png" alt="Remember to tap Browse when looking for NuGet packages." width="400"/>
+
 
 2. Click on the **Browse** tab, and then search for and install:
 
@@ -53,7 +57,8 @@ The secret to writing games is to pick a library to do all the hard work for you
 
 If all the NuGet packages are installed properly, your Solution Explorer should look like this:
 
-![The Solution Explorer view after the NuGet packages are installed.](solutionexplorer.png)
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/solutionexplorer.png" alt="The Solution Explorer view after the NuGet packages are installed." width="400"/>
+
 
 ## Create, initialize and build the first view
 
@@ -179,7 +184,7 @@ First let's get an image into the solution.
 
 3. In the image file's properties, set **Build Action** to **Embedded resouce**. It should look like this:
 
-![Adding an image requires setting the Build Action](resource.png)
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/resource.png" alt="Adding an image requires setting the Build Action." width="400"/>
 
 ## Drawing to the SkiaSharp Canvas - Loading the bitmap
 
@@ -243,7 +248,8 @@ Replace the existing **OnCanvasViewPaintSurface** method with this code:
 
 We've already created the canvas object in the XAML in **MainPage.xaml**, so this method gets a handle to it and then draws our bitmap.
 
-![Is it a bird? Is it a plane?](firstbitmap.png)
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/firstbitmap.png" alt="Is it a bird? Is it a plane?" width="400"/>
+
 
 Here you can see the bitmap has been drawn. The Surface Duo screen is really sharp with a *lot* of pixels, and so my bitmap looks tiny!
 
@@ -388,7 +394,8 @@ If you don't like the murky grey default background, you can create a larger bit
 
 We create a second bitmap variable, call the **LoadBitmap** method again (told you it would be useful), and draw it in the **AnimationLoop** code. It already looks a lot better, right?
 
-![Using a bitmap background to erase the screen](city.png)
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/city.png" alt="Using a bitmap background to erase the screen" width="400"/>
+
 
  
 ## Review
