@@ -25,7 +25,7 @@ Let's create a new project, ready to be the basis of your first Xamarin game.
 
 1. Launch Visual Studio, click on **Create a new project** and select the **Mobile App (Xamarin.Forms)** project type.
 
-<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/pic-01.png" alt="The Mobile App (Xamarin.Forms) is the project type to use." width="400"/>
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/pic01.png" alt="The Mobile App (Xamarin.Forms) is the project type to use." width="400"/>
 
 
 
