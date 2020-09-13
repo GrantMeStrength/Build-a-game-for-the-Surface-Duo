@@ -384,7 +384,7 @@ namespace DuoGame
 
 If you don't like the murky grey default background, you can create a larger bitmap for the background and then draw that rather than calling the **canvas.Clear()** method - it doesn't seem to incur much of a speed penalty, and it makes all the difference to your game.
 
-We create a second bitmap variable, call the LoadBitmap method again (told you it would be useful), and draw it in the AnimationLoop code. It already looks a lot better, right?
+We create a second bitmap variable, call the **LoadBitmap** method again (told you it would be useful), and draw it in the **AnimationLoop** code. It already looks a lot better, right?
 
 ![Using a bitmap background to erase the screen](city.png)
 
@@ -395,7 +395,7 @@ We've now added the ability to move bitmaps around the screen!
 
 You can download this final project as **DuoGameAnimated.zip**.
 
-What's next? Well, you'll need to add some form of input and of course sound effects would be nice. And what about using that hinge on the Duo to do something? And working with the expanded screen? Well, if you can't work all that out for yourself, I'm sure I can add a second installment to Building a Game for the Surface Duo..
+What's next? Well, you'll need to add some form of input and of course sound effects would be nice. And what about using that hinge on the Duo to do something? And working with the expanded screen? Well, if you can't work all that out for yourself, hang tight as I will be back to add more to Building a Game for the Surface Duo..
 
 -john
 
