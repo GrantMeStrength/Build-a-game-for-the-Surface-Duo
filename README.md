@@ -241,16 +241,16 @@ Replace the existing **OnCanvasViewPaintSurface** method with this code:
 
 We've already created the canvas object in the XAML in **MainPage.xaml**, so this method gets a handle to it and then draws our bitmap.
 
-![Yes, it's a little small](bitmap.png)
+![Is it a bird? Is it a plane?](firstbitmap.png)
 
 Here you can see the bitmap has been drawn. The Surface Duo screen is really sharp with a *lot* of pixels, and so my bitmap looks tiny!
 
 ## Review
 
-So far we've created the most boring game in the world, entitled "Look at a tiny image". However, it has done several important things:
+So far we've created the most boring game in the world, entitled "Look at an image". However, it has proved we can do several important things:
 
-1. Loaded a bitmap from a resource
-2. Drawn a bitmap
+1. Load a bitmap from a resource
+2. Draw a bitmap
 
 And of course, since this is a Surface Duo, you can drag the app to the center of the screen and it will expand to fill the entire view. 
 
@@ -379,9 +379,19 @@ namespace DuoGame
     }
 }
  ```
+ 
+## Make the background fancier
+
+If you don't like the murky grey default background, you can create a larger bitmap for the background and then draw that rather than calling the **canvas.Clear()** method - it doesn't seem to incur much of a speed penalty, and it makes all the difference to your game.
+
+We create a second bitmap variable, call the LoadBitmap method again (told you it would be useful), and draw it in the AnimationLoop code. It already looks a lot better, right?
+
+![Using a bitmap background to erase the screen](city.png)
+
+ 
 ## Review
 
-We've now added the ability to move bitmaps around the screen! If you don't like the murky grey default background, you can create a larger bitmap for the background and then draw that rather than calling the **canvas.Clear()** method - it doesn't seem to incur much of a speed penalty. 
+We've now added the ability to move bitmaps around the screen! 
 
 You can download this final project as **DuoGameAnimated.zip**.
 
