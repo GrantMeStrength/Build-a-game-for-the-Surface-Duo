@@ -1,10 +1,21 @@
-# Writing a game for the Surface Duo - Part 1
+# Writing a game for the Surface Duo 
+
+## Contents
 
 If the release of the Microsoft Surface Duo has tempted you to take a look at Android development, you might be wondering where to begin. Is it really necessary to learn Java, and an entirely different way of working with new controls and design patterns?
 
 Well, not necessarily. [Xamarin](https://xamarin.github.io) is Microsoft's .NET cross-platform development platform, and it's a great way to write apps for the Surface Duo (and other mobile devices) using tools you probably already know: Visual Studio, C#, and XAML.
 
 <img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/game.png" alt="Everyone loves a good Ninja Cat game"/>
+
+### Stage 1 - Install all the toools
+### State 2 - Graphics with SkiaSharp
+### Stage 3 - Animation
+### Stage 4 - Filling the screen
+### Stage 5 - Touch
+### Stage 6 - Some Game Play
+### Stage 7 - Final thoughts
+### Useful links
 
 Being old-school, I judge how useful a device and platform is by how easy it is to write a game. The good news is that with a few extra libraries, Xamarin is a great choice for writing casual games and I've already got some prototypes running on my Duo.
 
@@ -27,14 +38,11 @@ Let's create a new project, ready to be the basis of your first Xamarin game.
 
 <img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/pic01.png" alt="The Mobile App (Xamarin.Forms) is the project type to use." width="400"/>
 
-
-
 2. Click **Next**, name the project **DuoGame** and click **Create**.
 3. You now need to select a template for the app. Pick **Blank**, and enable Android and disable the iOS and Windows options (unless you want to go truly cross-platform, of course). 
 4. Click **Create**.
 
 <img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/template.png" alt="Select the Blank template." width="400"/>
-
 
 ## Add the code libraries you will need
 
@@ -43,7 +51,6 @@ The secret to writing games is to pick a library to do all the hard work for you
 1. In the Solution Explorer view, find the primary project - **DuoGame** - which is immediately under  **Solution 'DuoGame'**, then right-click it and select **Manage NuGet Packages...**.
 
 <img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/nuget.png" alt="Remember to tap Browse when looking for NuGet packages." width="400"/>
-
 
 2. Click on the **Browse** tab, and then search for and install:
 
@@ -170,7 +177,7 @@ We've created a new Visual Studio project, and installed the NuGet packages requ
 
 Now it's time to draw images to the screen. There are three things we need to worry about: adding the bitmap to the project, loading it into the program at run-time, and finally displaying it. Let's get started.
 
-## Stage 2 - Graphics
+## Stage 2 - Graphics with SkiaSharp
 
 Now we've the framework in place, and it's time to load some images and draw them on the screen, because a game without graphics.. well, it's a text adventure. And there's a time and a place for Zork, but it's not right now.
 
@@ -404,7 +411,64 @@ We've now added the ability to move bitmaps around the screen!
 
 You can download this final project as **DuoGameAnimated.zip**.
 
-What's next? Well, you'll need to add some form of input and of course sound effects would be nice. And what about using that hinge on the Duo to do something? And working with the expanded screen? Well, if you can't work all that out for yourself, hang tight as I will be back to add more to Building a Game for the Surface Duo..
+\/\/\/\/\/\/ work in progress below this point \/\/\/\/\/ come back soon! \/\/\/\/
+
+### Stage 4 - Filling the screen
+
+So far we've filled one screen with our game - now is the time to go big and fill both screens. That said, there is currently no way to launch an app that fills both screens by default, or to programmatically expand the app from one to two threes. The user must perform the drag-to-the-center gesture that activates this mode.
+
+I've further decided that this game will work with the device rotated into it's "mini laptop" orientation - mostly because it looks so cool! So how to we draw our background over the entire screen? Simple: just size it accordingly. The Duo's screen is wonderfully sharp, so that means you'll need a background image of 1800 pixels wide by 2700 pixels tall. When the new background texture is added and the screen expanded and rotated, the game looks like this:
+
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/extralarge.png" alt="Using a big bitmap background to fill both screens" width="400"/>
+
+
+### Stage 5 - Touch
+
+Interacting with the game is achieved by handling touch events. The Duo does support swipe guestures, and these can be very effective in applications where you manipulate controls or views. For a game however, we'll need a little more finesse.
+
+If you add **EnableTouchEvents="True"** to the XAML that defines the canvas:
+
+```XAML
+        <skia:SKCanvasView x:Name="canvasView"  PaintSurface="OnCanvasViewPaintSurface" EnableTouchEvents="True" Touch="OnTouch"/>
+ ```
+
+then you will get access to the **OnTouch** event which gets you the touch event type (pressed, moved, released) and the screen co-ordinates where the event happened. This is perfect for this game, which is going to allow the user to touch and drag back a control and when released launches an arrow in the required direction. This obviously means the NinjaCat is going to get replaced with a target as there's no way I'm going to be reponsible for attacking something as sacred as the NinjaCat (although the cat would clearly be able to defend itself perfectly well, but it wouldn't look good at my annual review).
+
+
+### Stage 6 - Some Game Play
+
+Launching arrows is does with a little trig and a little thinking about the logic required to keep track of the various touch events. My implementation goes something like this:
+
+* If the user touches the screen..
+   * Draw a line beween the starting point and their current finger position.
+* if the user stops touching the screen..
+   * Use the angle between the location where they started touching and the location between where the let go to decide the launch angle of the arrow
+   * Use the distance between the location where they started touching and the location between where the let go to decide the strength the arrow is fired
+
+The rest of the arrow benhavior is captured in a single class, ArrowClass, which looks like this:
+
+```c-sharp
+```
+
+The target for the arrows needs to move around or else it becomes a little too easy.
+
+At this point, you can download the game solution and try it yourself. There's something about the design of the Duo with it's angled screen that makes it an interesting device for games. I hope we'll see some really ingenious software for this little wonder.
+ 
+### Review and next steps
+
+Now that we can draw things to the screen, and detect screen touches, it's time to add some gameplay. 
+
+You could of course adapt this gameplay into something quite different: a golf game for example.
+
+
+### Useful links
+
+* [SDK and Emulator docs]()
+* [SkiaSharp]()
+* [SkiaSharp docs]()
+* [Xamarin docs for Dual Screen devices]()
+* [Surface Duo developer blog]()
+
 
 -john
 
