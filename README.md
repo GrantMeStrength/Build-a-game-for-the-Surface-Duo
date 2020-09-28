@@ -1,4 +1,4 @@
-# Writing a game for the Surface Duo
+# Writing a game for the Surface Duo - Part 1
 
 If the release of the Microsoft Surface Duo has tempted you to take a look at Android development, you might be wondering where to begin. Is it really necessary to learn Java, and an entirely different way of working with new controls and design patterns?
 
