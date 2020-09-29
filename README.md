@@ -450,8 +450,6 @@ private void OnTouch(object sender, SKTouchEventArgs e)
                 var _touchPoint = e.Location;
                 // The user moved their finger and it's now at location _touchPoint
             }
-v
-
             
             if (e.ActionType == SKTouchAction.Released)
             {
@@ -464,7 +462,9 @@ v
 
 
 
-Using these events, we can progress to launching the arrows. All it takes is a little trig and a some thinking about the logic required to keep track of the various touch events. Assuming there is a "starting point" for the user to touch, represented by a colored blob, my implementation goes something like this:
+Using these events, we can next progress to launching the arrows. All it takes is a little trig and a some thinking about the logic required to keep track of the various touch events. 
+
+Assuming there is a "starting point" for the user to touch, represented by a colored blob, my implementation goes something like this:
 
 * If the user is touching the screen..
    * Draw a line between the starting point and the current finger position.
@@ -537,7 +537,7 @@ class ArrowClass
 
 ### Stage 6 - A little gameplay
 
-With William Tell mode activated, we need a target. This is where your imagination can come into play, and I will simply drop in an actual target image so we can wrap all this up in time for tea. The very least I could do was to bounce the target around the screen, so that's what I did. If any of the arrows get close enough, the score is incremented. I'll leave it as an exercise to add more sophisticated gameplay.
+With William Tell mode activated, we need a target. This is where your imagination can come into play, and I will simply drop in an actual target image so we can wrap all this up in time for tea. The very least I could do was to bounce the target around the screen, so that's what I did. If any of the arrows get close enough to the bullseye, the score is incremented. I'll leave it as an exercise for the read to implement more sophisticated gameplay.
 
 At this point, you can download the game solution and try it yourself - it's called **DuoGameComplete.zip**. I look forward to playing some actual games!
 
@@ -545,12 +545,12 @@ At this point, you can download the game solution and try it yourself - it's cal
  
 ### Review and next steps
 
-There's something about the design of the Duo with its angled screen that makes it an interesting device for games. I hope we'll see some really ingenious software for this little wonder. There are characteristics of the device which can be brought into the game - for example, maybe the angle of the screen could affect gravity and make the arrows fall shorter. Or think of a golf game, in which adjusting the screen angle is a way of defining how the player takes a shot.
+There's something about the design of the Duo with its angled screen that makes it an interesting device for games. There are characteristics of the device itself which can be brought into the game - for example, maybe the angle of the screen could affect gravity and make the arrows fall shorter. Or think of a golf game, in which adjusting the screen angle is a way of defining how the player takes a shot.
 
 <img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/arrowgame.png" alt="Firing arrows at a moving target could redefine gameplay for the 21st century" width="400"/>
 
 
-Anyway! I hope this has given you some ideas, but also demonstrated how straightforward it is to write a game in C# using Xamaine for any Android (or iOS) device.
+Anyway! I hope this has given you some ideas, but also demonstrated how straightforward it is to write a game in C# using Xamarin for any Android (or iOS) device.
 
 
 ### Useful links
