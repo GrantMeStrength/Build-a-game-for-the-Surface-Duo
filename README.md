@@ -6,16 +6,16 @@ If the release of the Microsoft Surface Duo has tempted you to take a look at An
 
 Well, not necessarily. [Xamarin](https://xamarin.github.io) is Microsoft's .NET cross-platform development platform, and it's a great way to write apps for the Surface Duo (and other mobile devices) using tools you probably already know: Visual Studio, C#, and XAML.
 
-<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/game.png" alt="Everyone loves a good Ninja Cat game"/>
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/game.png" alt="Everyone loves a good Ninja Cat game"/>
 
-### Stage 1 - Install all the toools
-### State 2 - Graphics with SkiaSharp
-### Stage 3 - Animation
-### Stage 4 - Filling the screen
-### Stage 5 - Touch
-### Stage 6 - Some Game Play
-### Stage 7 - Final thoughts
-### Useful links
+* Stage 1 - Install all the toools
+* State 2 - Graphics with SkiaSharp
+* Stage 3 - Animation
+* Stage 4 - Filling the screen
+* Stage 5 - Dealing with touch
+* Stage 6 - A little gameplay
+* Stage 7 - Review and next steps
+* Useful links
 
 Being old-school, I judge how useful a device and platform is by how easy it is to write a game. The good news is that with a few extra libraries, Xamarin is a great choice for writing casual games and I've already got some prototypes running on my Duo.
 
@@ -36,13 +36,13 @@ Let's create a new project, ready to be the basis of your first Xamarin game.
 
 1. Launch Visual Studio, click on **Create a new project** and select the **Mobile App (Xamarin.Forms)** project type.
 
-<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/pic01.png" alt="The Mobile App (Xamarin.Forms) is the project type to use." width="400"/>
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/pic01.png" alt="The Mobile App (Xamarin.Forms) is the project type to use." width="400"/>
 
 2. Click **Next**, name the project **DuoGame** and click **Create**.
 3. You now need to select a template for the app. Pick **Blank**, and enable Android and disable the iOS and Windows options (unless you want to go truly cross-platform, of course). 
 4. Click **Create**.
 
-<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/template.png" alt="Select the Blank template." width="400"/>
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/template.png" alt="Select the Blank template." width="400"/>
 
 ## Add the code libraries you will need
 
@@ -50,7 +50,7 @@ The secret to writing games is to pick a library to do all the hard work for you
 
 1. In the Solution Explorer view, find the primary project - **DuoGame** - which is immediately under  **Solution 'DuoGame'**, then right-click it and select **Manage NuGet Packages...**.
 
-<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/nuget.png" alt="Remember to tap Browse when looking for NuGet packages." width="400"/>
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/nuget.png" alt="Remember to tap Browse when looking for NuGet packages." width="400"/>
 
 2. Click on the **Browse** tab, and then search for and install:
 
@@ -64,7 +64,7 @@ The secret to writing games is to pick a library to do all the hard work for you
 
 If all the NuGet packages are installed properly, your Solution Explorer should look like this:
 
-<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/solutionexplorer.png" alt="The Solution Explorer view after the NuGet packages are installed." width="400"/>
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/solutionexplorer.png" alt="The Solution Explorer view after the NuGet packages are installed." width="400"/>
 
 
 ## Create, initialize and build the first view
@@ -173,7 +173,7 @@ That's it. You should now see it as a deploy target in Visual Studio.
 
 ## Review
 
-We've created a new Visual Studio project, and installed the NuGet packages required to use the SkiaSharp game library. At this point, all the code will do is create a blank display, however if just want to download the project at this stage as the basis for your own projects, you'll find it in Files called "DuoGame.zip". Download it, expand it, and load it into Visual Studio. 
+We've created a new Visual Studio project, and installed the NuGet packages required to use the SkiaSharp game library. At this point, all the code will do is create a blank display, however if just want to download the project at this stage as the basis for your own projects, you'll find it in Files called "DuoGame.zip". Download it, expand it, and load it into Visual Studio.
 
 Now it's time to draw images to the screen. There are three things we need to worry about: adding the bitmap to the project, loading it into the program at run-time, and finally displaying it. Let's get started.
 
@@ -191,7 +191,7 @@ First let's get an image into the solution.
 
 3. In the image file's properties, set **Build Action** to **Embedded resouce**. It should look like this:
 
-<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/resource.png" alt="Adding an image requires setting the Build Action." width="400"/>
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/resource.png" alt="Adding an image requires setting the Build Action." width="400"/>
 
 ## Drawing to the SkiaSharp Canvas - Loading the bitmap
 
@@ -239,7 +239,7 @@ Now we're reading to draw the bitmap.
 
 Replace the existing **OnCanvasViewPaintSurface** method with this code:
 
-```charp
+```csharp
       void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
         {
             SKSurface surface = args.Surface;
@@ -255,7 +255,7 @@ Replace the existing **OnCanvasViewPaintSurface** method with this code:
 
 We've already created the canvas object in the XAML in **MainPage.xaml**, so this method gets a handle to it and then draws our bitmap.
 
-<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/firstbitmap.png" alt="Is it a bird? Is it a plane?" width="400"/>
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/firstbitmap.png" alt="Is it a bird? Is it a plane?" width="400"/>
 
 
 Here you can see the bitmap has been drawn. The Surface Duo screen is really sharp with a *lot* of pixels, and so my bitmap looks tiny!
@@ -399,9 +399,9 @@ namespace DuoGame
 
 If you don't like the murky grey default background, you can create a larger bitmap for the background and then draw that rather than calling the **canvas.Clear()** method - it doesn't seem to incur much of a speed penalty, and it makes all the difference to your game.
 
-We create a second bitmap variable, call the **LoadBitmap** method again (told you it would be useful), and draw it in the **AnimationLoop** code. It already looks a lot better, right?
+Simply create a second bitmap variable, call the **LoadBitmap** method again (told you it would be useful), and draw it in the **AnimationLoop** code. It already looks a lot better, right?
 
-<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/city.png" alt="Using a bitmap background to erase the screen" width="400"/>
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/city.png" alt="Using a bitmap background to erase the screen" width="400"/>
 
 
  
@@ -411,63 +411,155 @@ We've now added the ability to move bitmaps around the screen!
 
 You can download this final project as **DuoGameAnimated.zip**.
 
-\/\/\/\/\/\/ work in progress below this point \/\/\/\/\/ come back soon! \/\/\/\/
-
 ### Stage 4 - Filling the screen
 
-So far we've filled one screen with our game - now is the time to go big and fill both screens. That said, there is currently no way to launch an app that fills both screens by default, or to programmatically expand the app from one to two threes. The user must perform the drag-to-the-center gesture that activates this mode.
+So far we've filled one screen with our game - now is the time to go big and fill both screens. That said, there is currently no way to launch an app and have it fill both screens by default, or to programmatically expand the app from one to two screens. The user must perform the drag-to-the-center gesture that activates this mode.
 
-I've further decided that this game will work with the device rotated into it's "mini laptop" orientation - mostly because it looks so cool! So how to we draw our background over the entire screen? Simple: just size it accordingly. The Duo's screen is wonderfully sharp, so that means you'll need a background image of 1800 pixels wide by 2700 pixels tall. When the new background texture is added and the screen expanded and rotated, the game looks like this:
+I've further decided that this game will work with the device rotated into it's "mini laptop" orientation - mostly because it looks so cool! So how do we draw our background over the entire screen? Simple: just size it accordingly. The Duo will automatically draw over both screens if the image is large enough. In fact, the Duo's screen is wonderfully sharp that you'll need a background image of 1800 pixels wide by 2700 pixels tall. When the new background texture is added and the screen expanded and rotated, the game will looks like this:
 
-<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/extralarge.png" alt="Using a big bitmap background to fill both screens" width="400"/>
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/supercat.jpg" alt="Using a big bitmap background to fill both screens" width="400"/>
 
 
-### Stage 5 - Touch
+### Stage 5 - Dealing with touch
 
-Interacting with the game is achieved by handling touch events. The Duo does support swipe guestures, and these can be very effective in applications where you manipulate controls or views. For a game however, we'll need a little more finesse.
+Interacting with the game is achieved by handling touch events. The Duo does support swipe gestures, and these can be very effective in applications where you manipulate controls or views. For a game however, we'll need a little more finesse.
 
 If you add **EnableTouchEvents="True"** to the XAML that defines the canvas:
 
 ```XAML
-        <skia:SKCanvasView x:Name="canvasView"  PaintSurface="OnCanvasViewPaintSurface" EnableTouchEvents="True" Touch="OnTouch"/>
+        <skia:SKCanvasView x:Name="canvasView" 
+             PaintSurface="OnCanvasViewPaintSurface"
+         EnableTouchEvents="True" Touch="OnTouch"/>
  ```
 
-then you will get access to the **OnTouch** event which gets you the touch event type (pressed, moved, released) and the screen co-ordinates where the event happened. This is perfect for this game, which is going to allow the user to touch and drag back a control and when released launches an arrow in the required direction. This obviously means the NinjaCat is going to get replaced with a target as there's no way I'm going to be reponsible for attacking something as sacred as the NinjaCat (although the cat would clearly be able to defend itself perfectly well, but it wouldn't look good at my annual review).
+then you will get access to the **OnTouch** event which gets you the touch event type (pressed, moved, released) and the screen co-ordinates where the event happened. This is perfect for this game, which is going to allow the user to touch and drag back a control, which when released launches an arrow in the required direction. This obviously means the NinjaCat is going to get replaced with a target as there's no way I'm going to be responsible for attacking something as beloved as the NinjaCat (although the cat would clearly be able to defend itself perfectly well, it wouldn't look good at my annual review).
 
-
-### Stage 6 - Some Game Play
-
-Launching arrows is does with a little trig and a little thinking about the logic required to keep track of the various touch events. My implementation goes something like this:
-
-* If the user touches the screen..
-   * Draw a line beween the starting point and their current finger position.
-* if the user stops touching the screen..
-   * Use the angle between the location where they started touching and the location between where the let go to decide the launch angle of the arrow
-   * Use the distance between the location where they started touching and the location between where the let go to decide the strength the arrow is fired
-
-The rest of the arrow benhavior is captured in a single class, ArrowClass, which looks like this:
+Here's what the method that handles touch might look like in **MainPage.xaml.cs**:
 
 ```c-sharp
+private void OnTouch(object sender, SKTouchEventArgs e)
+        {
+            if (e.ActionType == SKTouchAction.Pressed)
+            {
+                var _touchPoint = e.Location;
+                // The user touched the screen at _touchPoint
+            }
+
+            if (e.ActionType == SKTouchAction.Moved)
+            {
+                var _touchPoint = e.Location;
+                // The user moved their finger and it's now at location _touchPoint
+            }
+v
+
+            
+            if (e.ActionType == SKTouchAction.Released)
+            {
+              // The user has stopped touching the screen
+            }
+
+            e.Handled = true;
+        }
 ```
 
-The target for the arrows needs to move around or else it becomes a little too easy.
 
-At this point, you can download the game solution and try it yourself. There's something about the design of the Duo with it's angled screen that makes it an interesting device for games. I hope we'll see some really ingenious software for this little wonder.
+
+Using these events, we can progress to launching the arrows. All it takes is a little trig and a some thinking about the logic required to keep track of the various touch events. Assuming there is a "starting point" for the user to touch, represented by a colored blob, my implementation goes something like this:
+
+* If the user is touching the screen..
+   * Draw a line between the starting point and the current finger position.
+* if the user stops touching the screen..
+   * Use the angle between the starting point location and the location where the let go to decide the launch angle of the arrow
+   * Use the distance between the starting point and the location  where they let go to decide the strength with which the arrow is fired
+
+Keeping track of arrows is done by creating an array of arrow objects. Drawing them draws a chunky line from their location to where they were a few steps previously.
+
+The rest of the arrow behavior is captured in a single class, ArrowClass, which looks like this:
+
+```c-sharp
+class ArrowClass
+    {
+        int x, y, dx, dy;
+        bool active;
+        const int screenheight = 2700;
+        const int screenwidth = 1800;
+        bool reachedUpperScreen;
+
+        public void Move()
+        {
+            // Move the arrow
+            x = x + dx;
+            y = y + dy;
+
+            // If on upper screen, dy gets smaller thanks to 'gravity' 
+           
+            if (reachedUpperScreen)
+            {
+                dy = dy + 1;
+                if (y > screenheight / 2 ) active = false;
+            }
+            else
+            {
+                if (y < screenheight/2)
+                    reachedUpperScreen = true;
+            }
+
+            // Stop the arrow when it goes out of range
+            if ((x < 0) || (x > screenwidth) || (y > screenheight)) active = false;
+        }
+
+        public void Fire(float angle, float magnitude)
+        {
+            // Launch the arrow in the right direction and speed
+            y = screenheight - 320; 
+            x = screenwidth / 2 ; 
+            dx = (int)(magnitude * Math.Cos(angle)); 
+            dy = (int)(magnitude * Math.Sin(angle));
+            active = true;
+            reachedUpperScreen = false;
+        }
+
+        public SkiaSharp.SKPoint GetStartLocation()
+        {
+            return new SkiaSharp.SKPoint(x, y);
+        }
+
+        public SkiaSharp.SKPoint GetEndLocation()
+        {
+            return new SkiaSharp.SKPoint(x + dx*4,  y + dy*4);
+        }
+
+        public bool GetState()
+        {
+            return active;
+        }
+```
+
+### Stage 6 - A little gameplay
+
+With William Tell mode activated, we need a target. This is where your imagination can come into play, and I will simply drop in an actual target image so we can wrap all this up in time for tea. The very least I could do was to bounce the target around the screen, so that's what I did. If any of the arrows get close enough, the score is incremented. I'll leave it as an exercise to add more sophisticated gameplay.
+
+At this point, you can download the game solution and try it yourself - it's called **DuoGameComplete.zip**. I look forward to playing some actual games!
+
+
  
 ### Review and next steps
 
-Now that we can draw things to the screen, and detect screen touches, it's time to add some gameplay. 
+There's something about the design of the Duo with its angled screen that makes it an interesting device for games. I hope we'll see some really ingenious software for this little wonder. There are characteristics of the device which can be brought into the game - for example, maybe the angle of the screen could affect gravity and make the arrows fall shorter. Or think of a golf game, in which adjusting the screen angle is a way of defining how the player takes a shot.
 
-You could of course adapt this gameplay into something quite different: a golf game for example.
+<img src="https://github.com/GrantMeStrength/Build-a-game-for-the-Surface-Duo/blob/main/images/arrowgame.png" alt="Firing arrows at a moving target could redefine gameplay for the 21st century" width="400"/>
+
+
+Anyway! I hope this has given you some ideas, but also demonstrated how straightforward it is to write a game in C# using Xamaine for any Android (or iOS) device.
 
 
 ### Useful links
 
-* [SDK and Emulator docs]()
-* [SkiaSharp]()
-* [SkiaSharp docs]()
-* [Xamarin docs for Dual Screen devices]()
-* [Surface Duo developer blog]()
+* [SDK and Emulator docs](https://docs.microsoft.com/dual-screen/android/)
+* [SkiaSharp](https://github.com/mono/SkiaSharp/releases)
+* [SkiaSharp Xamarin docs](docs.microsoft.com/xamarin/xamarin-forms/user-interface/graphics/skiasharp)
+* [Xamarin docs for Dual Screen devices](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/dual-screen/)
+* [Surface Duo developer blog](https://devblogs.microsoft.com/surface-duo/)
 
 
 -john
